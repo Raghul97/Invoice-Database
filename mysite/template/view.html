@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    <title>View Document</title>
+{% endblock %}
+{% block body %}
+    {% if data.mobile_number %}
+        <h1>Invoice Details</h1>
+        <p>Invoice Number: {{ data.invoice_number }}</p>
+        <p>Mobile Number: {{ data.mobile_number }}</p>
+        <p>Document url: <a href="{{data.url}}" Download>link to Download</a></p>
+    {% else %}
+        <h1>Enter the Invoice Number to view the Document.</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <button type="submit">Submit</button>
+        </form>
+    {% endif %}
+{% endblock %}
